@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>
+            Plugin paybox
+        </title>
+    </properties>
+    <body>
+        <section name="Plugin paybox">
+            <subsection name="Introduction">
+                <p>
+                    Il existe deux types d'interactions entre un système lutèce et Paybox :
+                </p>
+                <ol>
+                    <li>
+                        La redirection d'un usager vers le système paybox.
+                    </li>
+                    <li>
+                        la récupération des informations de paiement.
+                    </li>
+                </ol>
+                
+                <p>
+                    Ces deux cas d'utilisation sont expliqués dans la suite de cette page.
+                </p>
+                
+                <p>
+                    Avant d'aller plus en avant dans ce document il est conseillé de lire les documents
+                    <strong>
+                        ManuelIntegrationPayboxSystem_V5.08_FR.pdf
+                    </strong>
+                    et
+                    <strong>
+                        ParametresTestPaybox_V5.08_FR.pdf
+                    </strong>
+                    en version 5.8 téléchargeable
+                    sur la page de
+                    <a href="http://www1.paybox.com/telechargement_focus.aspx?cat=3">
+                        documentation de Paybox
+                    </a>
+                </p>
+            </subsection>
+            <subsection name="Redirection de l’usager vers les serveurs Paybox">
+                <p>
+                    Dans cas le plus courrant, donc sans aucune personnalisation, seul trois informations sont requises une fois
+                    les configurations finalisées :
+                </p>
+                <ul>
+                    <li>
+                        Un montant à payer en centimes.
+                    </li>
+                    <li>
+                        Une référence de dossier.
+                    </li>
+                    <li>
+                        Le mail de l'usager.
+                    </li>
+                </ul>
+                <source><![CDATA[// Paiement de 100 € pour la référence de commande 33, le mail de l’usager est usager@isp.tld
+String monUrl = PayboxUtil.buildPayboxUrl( 10000L, "33", "usager@isp.tld" );]]></source>
+                
+                <p>
+                    Pour les cas les plus complexe il faut utiliser la méthode
+                    <source><![CDATA[public static String buildPayboxUrl( final String url, final LinkedHashMap<String, String> params )]]></source>
+                    de
+                    <strong>
+                        PayboxUtil.java
+                    </strong>
+                    et lui fournir la liste de paramètres requis dans la liste de clé/valeur. Seul les paramètres
+                    <strong>
+                        PBX_TIME
+                    </strong>
+                    ,
+                    <strong>
+                        PBX_HASH
+                    </strong>
+                    et
+                    <strong>
+                        PBX_HMAC
+                    </strong>
+                    ne sont pas requis car généré par la méthode et ajouté en derniers paramètres.
+                </p>
+            </subsection>
+            <subsection name="Récupéation des informations de paiement">
+                <p>
+                    Une fois le paiement effectué par l'usager Paybox effectue une requete HTTP sur une url paramétrable.<br/>
+                    La méthode
+                    <strong>
+                        checkSignature
+                    </strong>
+                    effectue le contrôle de la signature, il suffit de lui passer la chaine de caractères des paramètres reçu par la requête.<br/>
+                    La valeur true est retournée si la signature est vérifiée.
+                </p>
+                <source><![CDATA[// HttpServletRequest request
+PayboxUtil.checkSignature( request.getQueryString( ) )]]></source>
+            </subsection>
+        </section>
+    </body>
+</document>

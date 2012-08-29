@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>Plugin paybox</title>
+	</properties>
+	<body>
+		<section name="Plugin paybox">
+			<subsection name="Configuration">
+                <p>
+                    Following table describes minimal needed configuration for simple cases.
+                    If more complexe functionnality are needed it's developper's duty to extends plugin functionnalities.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Key
+                            </th>
+                            <th>
+                                Detail
+                            </th>
+                            <th>
+                                Test value
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                paybox.url
+                            </td>
+                            <td>
+                                Payment server url
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.site
+                            </td>
+                            <td>
+Site number*
+                            </td>
+                            <td>
+                                1999888
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.rang
+                            </td>
+                            <td>
+                                Rank number*
+                            </td>
+                            <td>
+                                32
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.identifiant
+                            </td>
+                            <td>
+                                Identifier*
+                            </td>
+                            <td>
+                                107904482
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.devise Devise
+                            </td>
+                            <td>
+                                Currency
+                            </td>
+                            <td>
+                                978 (euro)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.key
+                            </td>
+                            <td>
+                            	HMAC generation key
+                            </td>
+                            <td>
+                                0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.paybox
+                            </td>
+                            <td>
+                                Main paybox address
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.backup1
+                            </td>
+                            <td>
+                                Backup address 1
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.backup2
+                            </td>
+                            <td>
+                                Backup address 1
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.retour
+                            </td>
+                            <td>
+                                Transmited parameters configuration
+                            </td>
+                            <td>
+                                reference:R;error:E;transaction:S;sign:K
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.effectue
+                            </td>
+                            <td>
+                                called url when payment finalized with success 
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.refuse
+                            </td>
+                            <td>
+                                called url when payment rejected
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.annule
+                            </td>
+                            <td>
+                                called url when payment cancelled
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.repondrea
+                            </td>
+                            <td>
+                                instant payment notification url
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.publicKeyPath
+                            </td>
+                            <td>
+                                file system path to Paybox's public key
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test. La clé publique est fournie par Paybox (cf annexes).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+				<p style="font-style:italic">
+					* : information provided by Paybox, specifically to an account.
+				</p>
+            </subsection>
+		</section>
+	</body>
+</document>

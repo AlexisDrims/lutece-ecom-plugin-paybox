@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>Plugin paybox</title>
+	</properties>
+	<body>
+		<section name="Plugin paybox">
+			<section name="Plugin paybox">
+            <subsection name="Introduction">
+                <p>
+                    Two use case exists :
+                </p>
+                <ol>
+                    <li>
+                        User redirection form Lutece website to Paybox system.
+                    </li>
+                    <li>
+                        Paybox callback
+                    </li>
+                </ol>
+                
+                <p>
+                    Both are explained following
+                </p>
+                
+                <p>
+                    Better reading a follong documentations before going forward :
+                    <strong>
+                        ManuelIntegrationPayboxSystem_V5.08_EN.pdf
+                    </strong>
+                    et
+                    <strong>
+                        ParametresTestPaybox_V5.08_EN.pdf
+                    </strong>
+                    in version 5.8 downloadable
+                    on 
+                    <a href="http://www1.paybox.com/telechargement_focus.aspx?cat=3">
+                        Paybox documentation page
+                    </a>.
+                </p>
+            </subsection>
+            <subsection name="User redirection form Lutece website to Paybox system.">
+                <p>
+                    In most case only 3 parameters are requires :
+                </p>
+                <ul>
+                    <li>
+                        An amount
+                    </li>
+                    <li>
+                        A folder reference.
+                    </li>
+                    <li>
+                        A user mail.
+                    </li>
+                </ul>
+                <source><![CDATA[// Amount of 100 € form  33, le mail de l’usager est usager@isp.tld
+String monUrl = PayboxUtil.buildPayboxUrl( 10000L, "33", "usager@isp.tld" );]]></source>
+                
+                <p>
+                    For more complexe cases you should use
+                    <source><![CDATA[public static String buildPayboxUrl( final String url, final LinkedHashMap<String, String> params )]]></source>
+                    method of 
+                    <strong>
+                        PayboxUtil.java
+                    </strong>
+                    and pass a hash map of key/values in parameter, except
+                    <strong>
+                        PBX_TIME
+                    </strong>
+                    ,
+                    <strong>
+                        PBX_HASH
+                    </strong>
+                    and
+                    <strong>
+                        PBX_HMAC
+                    </strong>
+                    which are managed by method internals.
+                </p>
+            </subsection>
+            <subsection name="Paybox callback">
+                <p>
+                	Once payment is finished by user, Paybox send an HTTP request to a configurable url.<br .>
+                    <strong>
+                        checkSignature
+                    </strong>
+                    method  check send signature. You just have to pass query string in parameter.<br />
+                    True is retuned if signature is checked.
+                </p>
+                <source><![CDATA[// HttpServletRequest request
+PayboxUtil.checkSignature( request.getQueryString( ) )]]></source>
+            </subsection>
+		</section>
+	</body>
+</document>

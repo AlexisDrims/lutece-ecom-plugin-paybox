@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>
+            Plugin paybox
+        </title>
+    </properties>
+    <body>
+        <section name="Plugin paybox">
+            <subsection name="Configuration">
+                <p>
+                    Le tableau suivant décrit la configuration minimal nécéssaire
+                    à une utilise "simple" du plugin paybox. En cas de besoin plus complexe c'est au développeur d'étendre
+                    les fonctionnalités du plugin.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Clé
+                            </th>
+                            <th>
+                                Détail
+                            </th>
+                            <th>
+                                Valeur de test
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                paybox.url
+                            </td>
+                            <td>
+                                Url du serveur de
+                                paiement
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.site
+                            </td>
+                            <td>
+                                Numéro du site*
+                            </td>
+                            <td>
+                                1999888
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.rang
+                            </td>
+                            <td>
+                                Numéro de rang*
+                            </td>
+                            <td>
+                                32
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.identifiant
+                            </td>
+                            <td>
+                                Identifiant*
+                            </td>
+                            <td>
+                                107904482
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.devise 
+                            </td>
+                            <td>
+                                Devise de la transaction
+                            </td>
+                            <td>
+                                978 (euro)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.key
+                            </td>
+                            <td>
+                            	Clé de génération du HMAC
+                            </td>
+                            <td>
+                                0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.paybox
+                            </td>
+                            <td>
+                                Adresse du serveur de paiement principal de Paybox
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.backup1
+                            </td>
+                            <td>
+                                Adresse du serveur de paiement de secours numéro 1
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.backup2
+                            </td>
+                            <td>
+                                Adresse du serveur de paiement de secours numéro 2
+                            </td>
+                            <td>
+                                https://preprodtpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.retour
+                            </td>
+                            <td>
+                                Paramètres transmis à l’application à la fin d’une transaction (quelque soit son résultat)
+                            </td>
+                            <td>
+                                reference:R;error:E;transaction:S;sign:K
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.effectue
+                            </td>
+                            <td>
+                                Url appelée suite à un paiement effectué avec succès
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.refuse
+                            </td>
+                            <td>
+                                Url appelée suite à un paiement reffusé
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.annule
+                            </td>
+                            <td>
+                                Url appelé suite à un paiement annulé par l’utilisateur
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.repondrea
+                            </td>
+                            <td>
+                                Url appelé directement par le serveur paybox pour transmettre le résultat du paiement. Cette url doit être accessible depuis internet.
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                paybox.publicKeyPath
+                            </td>
+                            <td>
+                                Chemin vers la clé publique fournis par paybox.
+                            </td>
+                            <td>
+                                Spécifique au site Lutèce de test. La clé publique est fournie par Paybox (cf annexes).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+				<p style="font-style:italic">
+					* : informations fournies par paybox, spécifiques à un compte.
+				</p>
+            </subsection>
+        </section>
+    </body>
+</document>
