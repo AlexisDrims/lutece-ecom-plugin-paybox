@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-	<properties>
-		<title>Plugin paybox</title>
-	</properties>
-	<body>
-		<section name="Plugin paybox">
-			<section name="Plugin paybox">
+    <properties>
+        <title>Plugin paybox</title>
+    </properties>
+    <body>
+        <section name="Plugin paybox">
             <subsection name="Introduction">
                 <p>
                     Two use case exists :
@@ -33,7 +32,7 @@
                         ParametresTestPaybox_V5.08_EN.pdf
                     </strong>
                     in version 5.8 downloadable
-                    on 
+                    on
                     <a href="http://www1.paybox.com/telechargement_focus.aspx?cat=3">
                         Paybox documentation page
                     </a>.
@@ -60,7 +59,7 @@ String monUrl = PayboxUtil.buildPayboxUrl( 10000L, "33", "usager@isp.tld" );]]><
                 <p>
                     For more complexe cases you should use
                     <source><![CDATA[public static String buildPayboxUrl( final String url, final LinkedHashMap<String, String> params )]]></source>
-                    method of 
+                    method of
                     <strong>
                         PayboxUtil.java
                     </strong>
@@ -81,16 +80,16 @@ String monUrl = PayboxUtil.buildPayboxUrl( 10000L, "33", "usager@isp.tld" );]]><
             </subsection>
             <subsection name="Paybox callback">
                 <p>
-                	Once payment is finished by user, Paybox send an HTTP request to a configurable url.<br .>
+                    Once payment is finished by user, Paybox send an HTTP request to a configurable url.<br/>
                     <strong>
                         checkSignature
                     </strong>
-                    method  check send signature. You just have to pass query string in parameter.<br />
+                    method  check send signature. You just have to pass query string in parameter.<br/>
                     True is retuned if signature is checked.
                 </p>
                 <source><![CDATA[// HttpServletRequest request
-PayboxUtil.checkSignature( request.getQueryString( ) )]]></source>
+PayboxUtil.checkSignature( request.getQueryString( ) )]]>	</source>
             </subsection>
-		</section>
-	</body>
+        </section>
+    </body>
 </document>
