@@ -10,8 +10,17 @@
     <icon-url>images/admin/skin/plugins/paybox/paybox.png</icon-url>
     <copyright>Copyright 2003-2012 Mairie de Paris</copyright>
     <core-version-dependency>
-        <min-core-version>2.3.3</min-core-version>
+        <min-core-version>3.1.6</min-core-version>
         <max-core-version/>
     </core-version-dependency>
     <db-pool-required>0</db-pool-required>
+    
+    <servlets>
+	  <servlet>
+	    <servlet-name>PayboxServlet</servlet-name>
+	    <servlet-class>fr.paris.lutece.plugins.paybox.web.PayboxServlet</servlet-class>
+   		<url-pattern>/paybox</url-pattern>
+	  </servlet>
+	</servlets>
+    
 </plug-in>
