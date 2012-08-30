@@ -33,12 +33,28 @@
  */
 package fr.paris.lutece.plugins.paybox;
 
+import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
+import fr.paris.lutece.plugins.paybox.util.PayboxConstants;
+import fr.paris.lutece.plugins.paybox.util.PayboxUserProperties;
+import fr.paris.lutece.portal.service.util.AppLogService;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.lang.StringUtils;
+
+import org.bouncycastle.util.io.pem.PemReader;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -47,23 +63,14 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
+
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
 import javax.xml.bind.DatatypeConverter;
-
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.lang.StringUtils;
-import org.bouncycastle.util.io.pem.PemReader;
-import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
-
-import fr.paris.lutece.plugins.paybox.util.PayboxConstants;
-import fr.paris.lutece.plugins.paybox.util.PayboxUserProperties;
-import fr.paris.lutece.portal.service.util.AppLogService;
 
 
 /**
@@ -158,6 +165,18 @@ public final class PayboxUtil
         params.put( PayboxConstants.PBX_REPONDRE_A, PayboxUserProperties.REPONDRA );
 
         return PayboxUtil.buildPayboxUrl( PayboxUserProperties.URL, params );
+    }
+
+    /**
+     * Builds a full paybox access url.
+     *
+     * @param payboxUrlItem the paybox url item
+     * @return the full url.
+     */
+    public static String buildPayboxUrl( PayboxUrlItem payboxUrlItem )
+    {
+        return PayboxUtil.buildPayboxUrl( payboxUrlItem.getAmountInCents(  ), payboxUrlItem.getOrderReference(  ),
+            payboxUrlItem.getEmail(  ) );
     }
 
     /**
@@ -353,9 +372,9 @@ public final class PayboxUtil
     }
 
     /**
-     * 
+     *
      * Operates validation of signature among message and public key.
-     * 
+     *
      * @param message the message
      * @param sign the raw signature, must be still urlencoded.
      * @param publicKey the public key.
@@ -371,8 +390,10 @@ public final class PayboxUtil
         final Signature sig = Signature.getInstance( PayboxUtil.HASH_ENCRYPTION_ALGORITHM );
         sig.initVerify( publicKey );
         sig.update( message.getBytes( PayboxUtil.CHARSET ) );
+
         final Base64 b64 = new Base64(  );
         byte[] bytes = (byte[]) b64.decode( URLDecoder.decode( sign, PayboxUtil.CHARSET ).getBytes( CHARSET ) );
+
         return sig.verify( bytes );
     }
 }

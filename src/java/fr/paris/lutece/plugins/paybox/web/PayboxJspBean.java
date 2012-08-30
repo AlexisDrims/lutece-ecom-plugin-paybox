@@ -34,94 +34,37 @@
 package fr.paris.lutece.plugins.paybox.web;
 
 import fr.paris.lutece.plugins.paybox.PayboxUtil;
+import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.plugins.paybox.service.PayboxPlugin;
 import fr.paris.lutece.plugins.paybox.service.PayboxService;
-import fr.paris.lutece.plugins.paybox.util.PayboxErrorConstants;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
-
-import java.io.IOException;
+import fr.paris.lutece.portal.web.system.PluginJspBean;
 
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * Handles paybox server to server.
+ * The Class PayboxApp.
  */
-public class PayboxServlet extends HttpServlet
+public class PayboxJspBean extends PluginJspBean
 {
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 1L;
-
     /** The _paybox log service. */
     private final PayboxLogService _payboxLogService = SpringContextService.getBean( "paybox.payboxLogService" );
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
-     * , javax.servlet.http.HttpServletResponse)
-     */
-    @Override
-    protected void doGet( final HttpServletRequest req, final HttpServletResponse resp )
-        throws ServletException, IOException
-    {
-        this.doPost( req, resp );
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
-     * , javax.servlet.http.HttpServletResponse)
-     */
-    @Override
-    protected void doPost( final HttpServletRequest request, final HttpServletResponse response )
-        throws ServletException, IOException
-    {
-        if ( PayboxUtil.checkSignature( request.getQueryString(  ) ) )
-        {
-            final String error = request.getParameter( "error" );
-
-            if ( error.equals( PayboxErrorConstants.CODE_ERROR_OPERATION_REUSSIE ) )
-            {
-                // ici maj du service de logs
-                this._payboxLogService.removeLog( request.getParameter( "reference" ),
-                    PluginService.getPlugin( PayboxPlugin.PLUGIN_NAME ) );
-
-                this.delagate( request, response );
-            }
-            else
-            {
-                AppLogService.info( "Transaction terminée avec code d'erreur : " + error );
-            }
-        }
-        else
-        {
-            AppLogService.error( "Problème de vérification de la signature." );
-        }
-
-        response.setStatus( 200 );
-    }
-
     /**
-     * Delagate.
+     * Gets the paybox informations about current user and redirect it
      *
      * @param request the request
      * @param response the response
      */
-    private void delagate( final HttpServletRequest request, final HttpServletResponse response )
+    public void getPayboxAccess( final HttpServletRequest request, final HttpServletResponse response )
     {
-        // no DI possible...
         final List<PayboxService> listPayboxServices = SpringContextService.getBeansOfType( PayboxService.class );
 
         if ( ( listPayboxServices == null ) || listPayboxServices.isEmpty(  ) )
@@ -139,7 +82,18 @@ public class PayboxServlet extends HttpServlet
 
             try
             {
-                payboxService.handlePayboxReturn( request, response );
+                final PayboxUrlItem payboxUrlItem = payboxService.handlePayboxAccess( request, response );
+
+                if ( payboxUrlItem != null )
+                {
+                    this._payboxLogService.addLog( payboxUrlItem.getOrderReference(  ),
+                        PluginService.getPlugin( PayboxPlugin.PLUGIN_NAME ) );
+                    response.sendRedirect( PayboxUtil.buildPayboxUrl( payboxUrlItem ) );
+                }
+                else
+                {
+                    response.sendRedirect( request.getHeader( "Referer" ) );
+                }
             }
             catch ( final Exception e )
             {

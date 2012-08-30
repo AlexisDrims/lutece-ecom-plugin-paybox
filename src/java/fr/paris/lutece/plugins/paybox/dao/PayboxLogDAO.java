@@ -31,38 +31,30 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.paybox.service;
+package fr.paris.lutece.plugins.paybox.dao;
 
-import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import fr.paris.lutece.plugins.paybox.dao.entity.PayboxLogEntity;
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
 
 /**
- *
- * Paybox service. Handles paybox callback
+ * The Interface PayboxLogDAO.
  */
-public interface PayboxService
+public interface PayboxLogDAO
 {
     /**
-     * Handles paybox callback.
+     * Adds the log.
      *
-     * @param request the request
-     * @param response the response
-     * @throws Exception the exception
+     * @param payboxLogEntity the paybox log entity
+     * @param plugin the plugin
      */
-    void handlePayboxReturn( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    void addLog( PayboxLogEntity payboxLogEntity, Plugin plugin );
 
     /**
-     * Handle paybox access.
+     * Removes the log.
      *
-     * @param request the request
-     * @param response the response
-     * @return the paybox url item
-     * @throws Exception the exception
+     * @param orderReference the order reference
+     * @param plugin the plugin
      */
-    PayboxUrlItem handlePayboxAccess( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    void removeLog( String orderReference, Plugin plugin );
 }

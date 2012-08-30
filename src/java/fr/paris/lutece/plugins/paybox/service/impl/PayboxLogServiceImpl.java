@@ -31,38 +31,46 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.paybox.service;
+package fr.paris.lutece.plugins.paybox.service.impl;
 
-import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
+import fr.paris.lutece.plugins.paybox.dao.PayboxLogDAO;
+import fr.paris.lutece.plugins.paybox.dao.entity.PayboxLogEntity;
+import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
 
 
 /**
- *
- * Paybox service. Handles paybox callback
+ * The Class PayboxLogServiceImpl.
  */
-public interface PayboxService
+@Service
+public class PayboxLogServiceImpl implements PayboxLogService
 {
-    /**
-     * Handles paybox callback.
-     *
-     * @param request the request
-     * @param response the response
-     * @throws Exception the exception
-     */
-    void handlePayboxReturn( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    @Autowired
+    private PayboxLogDAO _payboxLogDAO;
 
-    /**
-     * Handle paybox access.
+    /*
+     * (non-Javadoc)
      *
-     * @param request the request
-     * @param response the response
-     * @return the paybox url item
-     * @throws Exception the exception
+     * @see fr.paris.lutece.plugins.paybox.service.PayboxLogService#addLog()
      */
-    PayboxUrlItem handlePayboxAccess( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    @Override
+    public void addLog( String orderReference, Plugin plugin )
+    {
+        PayboxLogEntity payboxLogEntity = new PayboxLogEntity(  );
+        payboxLogEntity.setOrderReference( orderReference );
+        this._payboxLogDAO.addLog( payboxLogEntity, plugin );
+    }
+
+    /* (non-Javadoc)
+     * @see fr.paris.lutece.plugins.paybox.service.PayboxLogService#removeLog(java.lang.String, fr.paris.lutece.portal.service.plugin.Plugin)
+     */
+    @Override
+    public void removeLog( String orderReference, Plugin plugin )
+    {
+        this._payboxLogDAO.removeLog( orderReference, plugin );
+    }
 }

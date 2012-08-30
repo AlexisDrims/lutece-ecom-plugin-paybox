@@ -31,38 +31,80 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.paybox.service;
-
-import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package fr.paris.lutece.plugins.paybox.item;
 
 
 /**
- *
- * Paybox service. Handles paybox callback
+ * The Class PayboxUrlItem contains data needed for paybox url building
  */
-public interface PayboxService
+public class PayboxUrlItem
 {
-    /**
-     * Handles paybox callback.
-     *
-     * @param request the request
-     * @param response the response
-     * @throws Exception the exception
-     */
-    void handlePayboxReturn( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    /** The _amount in cents. */
+    private Long _amountInCents;
+
+    /** The _email. */
+    private String _email;
+
+    /** The _order reference. */
+    private String _orderReference;
 
     /**
-     * Handle paybox access.
+     * Gets the amount in cents.
      *
-     * @param request the request
-     * @param response the response
-     * @return the paybox url item
-     * @throws Exception the exception
+     * @return the amountInCents
      */
-    PayboxUrlItem handlePayboxAccess( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    public Long getAmountInCents(  )
+    {
+        return _amountInCents;
+    }
+
+    /**
+     * Gets the email.
+     *
+     * @return the email
+     */
+    public String getEmail(  )
+    {
+        return _email;
+    }
+
+    /**
+     * Gets the order reference.
+     *
+     * @return the orderReference
+     */
+    public String getOrderReference(  )
+    {
+        return _orderReference;
+    }
+
+    /**
+     * Sets the amount in cents.
+     *
+     * @param amountInCents the amountInCents to set
+     */
+    public void setAmountInCents( Long amountInCents )
+    {
+        this._amountInCents = amountInCents;
+    }
+
+    /**
+     * Sets the email.
+     *
+     * @param email the email to set
+     */
+    public void setEmail( String email )
+    {
+        this._email = email;
+    }
+
+    /**
+     * Sets the order reference.
+     *
+     * @param orderReference the orderReference to set
+     */
+    public void setOrderReference( String orderReference )
+    {
+        this._orderReference = orderReference;
+    }
 }

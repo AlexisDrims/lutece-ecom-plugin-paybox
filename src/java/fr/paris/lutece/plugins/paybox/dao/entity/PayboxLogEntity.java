@@ -31,38 +31,82 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.paybox.service;
+package fr.paris.lutece.plugins.paybox.dao.entity;
 
-import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 
 /**
- *
- * Paybox service. Handles paybox callback
+ * The Class PayboxLogEntity.
  */
-public interface PayboxService
+public class PayboxLogEntity
 {
-    /**
-     * Handles paybox callback.
-     *
-     * @param request the request
-     * @param response the response
-     * @throws Exception the exception
-     */
-    void handlePayboxReturn( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    /** The date. */
+    private Date _date;
+
+    /** The id. */
+    private Long _id;
+
+    /** The order reference. */
+    private String _orderReference;
 
     /**
-     * Handle paybox access.
+     * Gets the date.
      *
-     * @param request the request
-     * @param response the response
-     * @return the paybox url item
-     * @throws Exception the exception
+     * @return the date
      */
-    PayboxUrlItem handlePayboxAccess( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    public Date getDate(  )
+    {
+        return _date;
+    }
+
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public Long getId(  )
+    {
+        return _id;
+    }
+
+    /**
+     * Gets the order reference.
+     *
+     * @return the orderReference
+     */
+    public String getOrderReference(  )
+    {
+        return _orderReference;
+    }
+
+    /**
+     * Sets the date.
+     *
+     * @param date the date to set
+     */
+    public void setDate( Date date )
+    {
+        this._date = date;
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param id the id to set
+     */
+    public void setId( Long id )
+    {
+        this._id = id;
+    }
+
+    /**
+     * Sets the order reference.
+     *
+     * @param orderReference the orderReference to set
+     */
+    public void setOrderReference( String orderReference )
+    {
+        this._orderReference = orderReference;
+    }
 }

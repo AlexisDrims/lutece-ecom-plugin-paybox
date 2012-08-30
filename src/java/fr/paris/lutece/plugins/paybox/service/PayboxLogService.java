@@ -33,36 +33,27 @@
  */
 package fr.paris.lutece.plugins.paybox.service;
 
-import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
 
 /**
- *
- * Paybox service. Handles paybox callback
+ * The Interface PayboxLogService.
  */
-public interface PayboxService
+public interface PayboxLogService
 {
     /**
-     * Handles paybox callback.
+     * Add a line of log about a new transaction.
      *
-     * @param request the request
-     * @param response the response
-     * @throws Exception the exception
+     * @param orderReference the order reference
+     * @param plugin the plugin
      */
-    void handlePayboxReturn( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    void addLog( String orderReference, Plugin plugin );
 
     /**
-     * Handle paybox access.
+     * Removes the log.
      *
-     * @param request the request
-     * @param response the response
-     * @return the paybox url item
-     * @throws Exception the exception
+     * @param idDossier the id dossier
+     * @param plugin the plugin
      */
-    PayboxUrlItem handlePayboxAccess( HttpServletRequest request, HttpServletResponse response )
-        throws Exception;
+    void removeLog( String idDossier, Plugin plugin );
 }
