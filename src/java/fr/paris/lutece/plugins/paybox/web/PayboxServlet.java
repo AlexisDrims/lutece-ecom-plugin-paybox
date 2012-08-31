@@ -90,14 +90,14 @@ public class PayboxServlet extends HttpServlet
     {
         if ( PayboxUtil.checkSignature( request.getQueryString(  ) ) )
         {
+            // ici maj du service de logs
+            this._payboxLogService.removeLog( request.getParameter( "reference" ),
+                PluginService.getPlugin( PayboxPlugin.PLUGIN_NAME ) );
+
             final String error = request.getParameter( "error" );
 
             if ( error.equals( PayboxErrorConstants.CODE_ERROR_OPERATION_REUSSIE ) )
             {
-                // ici maj du service de logs
-                this._payboxLogService.removeLog( request.getParameter( "reference" ),
-                    PluginService.getPlugin( PayboxPlugin.PLUGIN_NAME ) );
-
                 this.delagate( request, response );
             }
             else

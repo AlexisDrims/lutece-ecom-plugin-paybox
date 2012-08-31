@@ -346,7 +346,10 @@ public final class PayboxUtil
         final byte[] pubKey = reader.readPemObject(  ).getContent(  );
         final X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec( pubKey );
 
-        return keyFactory.generatePublic( publicKeySpec );
+        PublicKey generatePublic = keyFactory.generatePublic( publicKeySpec );
+        reader.close(  );
+
+        return generatePublic;
     }
 
     /**

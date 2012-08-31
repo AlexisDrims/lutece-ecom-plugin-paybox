@@ -65,6 +65,8 @@ public class PayboxAdminJspBean extends PluginAdminPageJspBean
 
     /** The Constant TEMPLATE. */
     private static final String TEMPLATE = "admin/plugins/paybox/paybox_read_log.html";
+
+    /** The _paybox log service. */
     private final PayboxLogService _payboxLogService = SpringContextService.getBean( "paybox.payboxLogService" );
 
     /**
