@@ -55,7 +55,7 @@ public class PayboxUrlItem
      */
     public Long getAmountInCents(  )
     {
-        return _amountInCents;
+        return this._amountInCents;
     }
 
     /**
@@ -65,7 +65,7 @@ public class PayboxUrlItem
      */
     public String getEmail(  )
     {
-        return _email;
+        return this._email;
     }
 
     /**
@@ -75,7 +75,7 @@ public class PayboxUrlItem
      */
     public String getOrderReference(  )
     {
-        return _orderReference;
+        return this._orderReference;
     }
 
     /**
@@ -83,7 +83,7 @@ public class PayboxUrlItem
      *
      * @param amountInCents the amountInCents to set
      */
-    public void setAmountInCents( Long amountInCents )
+    public void setAmountInCents( final Long amountInCents )
     {
         this._amountInCents = amountInCents;
     }
@@ -93,7 +93,7 @@ public class PayboxUrlItem
      *
      * @param email the email to set
      */
-    public void setEmail( String email )
+    public void setEmail( final String email )
     {
         this._email = email;
     }
@@ -103,7 +103,7 @@ public class PayboxUrlItem
      *
      * @param orderReference the orderReference to set
      */
-    public void setOrderReference( String orderReference )
+    public void setOrderReference( final String orderReference )
     {
         this._orderReference = orderReference;
     }

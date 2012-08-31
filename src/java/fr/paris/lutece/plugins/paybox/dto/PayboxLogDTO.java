@@ -31,40 +31,82 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.paybox.service;
+package fr.paris.lutece.plugins.paybox.dto;
 
-import fr.paris.lutece.plugins.paybox.dto.PayboxLogDTO;
-import fr.paris.lutece.portal.service.plugin.Plugin;
-
-import java.util.List;
+import java.util.Date;
 
 
 /**
- * The Interface PayboxLogService.
+ * The Class PayboxLogDTO.
  */
-public interface PayboxLogService
+public class PayboxLogDTO
 {
-    /**
-     * Add a line of log about a new transaction.
-     *
-     * @param orderReference the order reference
-     * @param plugin the plugin
-     */
-    void addLog( String orderReference, Plugin plugin );
+    /** The date. */
+    private Date _date;
+
+    /** The id. */
+    private Long _id;
+
+    /** The order reference. */
+    private String _orderReference;
 
     /**
-     * Gets the all.
+     * Gets the date.
      *
-     * @param plugin the plugin
-     * @return the all
+     * @return the date
      */
-    List<PayboxLogDTO> getAll( Plugin plugin );
+    public Date getDate(  )
+    {
+        return this._date;
+    }
 
     /**
-     * Removes the log.
+     * Gets the id.
      *
-     * @param idDossier the id dossier
-     * @param plugin the plugin
+     * @return the id
      */
-    void removeLog( String idDossier, Plugin plugin );
+    public Long getId(  )
+    {
+        return this._id;
+    }
+
+    /**
+     * Gets the order reference.
+     *
+     * @return the orderReference
+     */
+    public String getOrderReference(  )
+    {
+        return this._orderReference;
+    }
+
+    /**
+     * Sets the date.
+     *
+     * @param date the date to set
+     */
+    public void setDate( final Date date )
+    {
+        this._date = date;
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param id the id to set
+     */
+    public void setId( final Long id )
+    {
+        this._id = id;
+    }
+
+    /**
+     * Sets the order reference.
+     *
+     * @param orderReference the orderReference to set
+     */
+    public void setOrderReference( final String orderReference )
+    {
+        this._orderReference = orderReference;
+    }
 }

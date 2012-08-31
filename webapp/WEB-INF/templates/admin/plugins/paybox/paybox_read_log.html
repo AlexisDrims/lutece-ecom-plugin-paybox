@@ -1,0 +1,26 @@
+<div class="content-box">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    #i18n{paybox.tableau.date}
+                </th>
+                <th>
+                    #i18n{paybox.tableau.orderReference}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <#list table as line>
+            <tr>
+                <td>
+                    ${line.date?string("dd/MM/yyyy HH:mm")}
+                </td>
+                <td>
+                    ${line.orderReference}
+                </td>
+            </tr>
+            </#list>
+        </tbody>
+    </table>
+</div>

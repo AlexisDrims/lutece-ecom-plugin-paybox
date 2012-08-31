@@ -14,7 +14,18 @@
         <max-core-version/>
     </core-version-dependency>
     <db-pool-required>1</db-pool-required>
-    
+    <admin-features>
+		<admin-feature>
+			<feature-id>PAYBOX_READ</feature-id>
+			<feature-title>paybox.adminFeature.name</feature-title>
+			<feature-description>parisvideo.adminFeature.description</feature-description>
+			<feature-level>3</feature-level>
+			<feature-url>jsp/admin/plugins/paybox/ConsulterLogs.jsp</feature-url>
+			<feature-icon-url>images/admin/skin/plugins/paybox/paybox.png</feature-icon-url>
+			<!--<feature-documentation-url>jsp/admin/documentation/AdminDocumentation.jsp?doc=admin-parisvideo</feature-documentation-url>-->
+			<feature-group>APPLICATIONS</feature-group>
+		</admin-feature>
+	</admin-features>
     <servlets>
 	  <servlet>
 	    <servlet-name>PayboxServlet</servlet-name>

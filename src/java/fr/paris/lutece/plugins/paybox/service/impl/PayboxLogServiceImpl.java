@@ -35,12 +35,16 @@ package fr.paris.lutece.plugins.paybox.service.impl;
 
 import fr.paris.lutece.plugins.paybox.dao.PayboxLogDAO;
 import fr.paris.lutece.plugins.paybox.dao.entity.PayboxLogEntity;
+import fr.paris.lutece.plugins.paybox.dto.PayboxLogDTO;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -58,9 +62,9 @@ public class PayboxLogServiceImpl implements PayboxLogService
      * @see fr.paris.lutece.plugins.paybox.service.PayboxLogService#addLog()
      */
     @Override
-    public void addLog( String orderReference, Plugin plugin )
+    public void addLog( final String orderReference, final Plugin plugin )
     {
-        PayboxLogEntity payboxLogEntity = new PayboxLogEntity(  );
+        final PayboxLogEntity payboxLogEntity = new PayboxLogEntity(  );
         payboxLogEntity.setOrderReference( orderReference );
         this._payboxLogDAO.addLog( payboxLogEntity, plugin );
     }
@@ -69,8 +73,32 @@ public class PayboxLogServiceImpl implements PayboxLogService
      * @see fr.paris.lutece.plugins.paybox.service.PayboxLogService#removeLog(java.lang.String, fr.paris.lutece.portal.service.plugin.Plugin)
      */
     @Override
-    public void removeLog( String orderReference, Plugin plugin )
+    public void removeLog( final String orderReference, final Plugin plugin )
     {
         this._payboxLogDAO.removeLog( orderReference, plugin );
+    }
+
+    /**
+     * Gets the all.
+     *
+     * @param plugin the plugin
+     * @return the all
+     */
+    @Override
+    public List<PayboxLogDTO> getAll( final Plugin plugin )
+    {
+        final List<PayboxLogEntity> listeLogs = this._payboxLogDAO.getAll( plugin );
+        final List<PayboxLogDTO> ret = new ArrayList<PayboxLogDTO>(  );
+
+        for ( final PayboxLogEntity e : listeLogs )
+        {
+            final PayboxLogDTO b = new PayboxLogDTO(  );
+            b.setId( e.getId(  ) );
+            b.setDate( e.getDate(  ) );
+            b.setOrderReference( e.getOrderReference(  ) );
+            ret.add( b );
+        }
+
+        return ret;
     }
 }

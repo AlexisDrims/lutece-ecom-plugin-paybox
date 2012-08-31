@@ -57,7 +57,7 @@ public class PayboxLogEntity
      */
     public Date getDate(  )
     {
-        return _date;
+        return this._date;
     }
 
     /**
@@ -67,7 +67,7 @@ public class PayboxLogEntity
      */
     public Long getId(  )
     {
-        return _id;
+        return this._id;
     }
 
     /**
@@ -77,7 +77,7 @@ public class PayboxLogEntity
      */
     public String getOrderReference(  )
     {
-        return _orderReference;
+        return this._orderReference;
     }
 
     /**
@@ -85,7 +85,7 @@ public class PayboxLogEntity
      *
      * @param date the date to set
      */
-    public void setDate( Date date )
+    public void setDate( final Date date )
     {
         this._date = date;
     }
@@ -95,7 +95,7 @@ public class PayboxLogEntity
      *
      * @param id the id to set
      */
-    public void setId( Long id )
+    public void setId( final Long id )
     {
         this._id = id;
     }
@@ -105,7 +105,7 @@ public class PayboxLogEntity
      *
      * @param orderReference the orderReference to set
      */
-    public void setOrderReference( String orderReference )
+    public void setOrderReference( final String orderReference )
     {
         this._orderReference = orderReference;
     }

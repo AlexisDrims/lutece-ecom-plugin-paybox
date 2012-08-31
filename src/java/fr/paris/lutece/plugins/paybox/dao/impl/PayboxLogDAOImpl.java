@@ -40,7 +40,9 @@ import fr.paris.lutece.util.sql.DAOUtil;
 
 import java.sql.Timestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -60,6 +62,9 @@ public class PayboxLogDAOImpl implements PayboxLogDAO
 
     /** The Constant SQL_QUERY_NEWPK. */
     private static final String SQL_QUERY_NEWPK = "SELECT max( id ) FROM paybox_log;";
+
+    /** The Constant SQL_QUERY_SELECTALL. */
+    private static final String SQL_QUERY_SELECTALL = "SELECT id, date, order_reference FROM paybox_log ORDER BY order_reference DESC";
 
     /*
      * (non-Javadoc)
@@ -81,6 +86,35 @@ public class PayboxLogDAOImpl implements PayboxLogDAO
         daoUtil.setString( 3, payboxLogEntity.getOrderReference(  ) );
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * fr.paris.lutece.plugins.paybox.dao.PayboxLogDAO#getAll(fr.paris.lutece
+     * .portal.service.plugin.Plugin)
+     */
+    @Override
+    public List<PayboxLogEntity> getAll( final Plugin plugin )
+    {
+        final List<PayboxLogEntity> ret = new ArrayList<PayboxLogEntity>(  );
+        final DAOUtil daoUtil = new DAOUtil( PayboxLogDAOImpl.SQL_QUERY_SELECTALL, plugin );
+        daoUtil.executeQuery(  );
+
+        while ( daoUtil.next(  ) )
+        {
+            final PayboxLogEntity payboxLogEntity = new PayboxLogEntity(  );
+            payboxLogEntity.setId( daoUtil.getLong( 1 ) );
+            payboxLogEntity.setDate( new Date( daoUtil.getTimestamp( 2 ).getTime(  ) ) );
+            payboxLogEntity.setOrderReference( daoUtil.getString( 3 ) );
+
+            ret.add( payboxLogEntity );
+        }
+
+        daoUtil.free(  );
+
+        return ret;
     }
 
     /**

@@ -48,6 +48,7 @@ public class PayboxPlugin extends PluginDefaultImplementation
     /**
      * Initialize the PayboxPlugin.
      */
+    @Override
     public void init(  )
     {
         AppLogService.debug( "Paybox Initialised" );

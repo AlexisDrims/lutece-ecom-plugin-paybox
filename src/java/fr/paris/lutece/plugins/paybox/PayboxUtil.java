@@ -173,7 +173,7 @@ public final class PayboxUtil
      * @param payboxUrlItem the paybox url item
      * @return the full url.
      */
-    public static String buildPayboxUrl( PayboxUrlItem payboxUrlItem )
+    public static String buildPayboxUrl( final PayboxUrlItem payboxUrlItem )
     {
         return PayboxUtil.buildPayboxUrl( payboxUrlItem.getAmountInCents(  ), payboxUrlItem.getOrderReference(  ),
             payboxUrlItem.getEmail(  ) );
@@ -392,7 +392,7 @@ public final class PayboxUtil
         sig.update( message.getBytes( PayboxUtil.CHARSET ) );
 
         final Base64 b64 = new Base64(  );
-        byte[] bytes = (byte[]) b64.decode( URLDecoder.decode( sign, PayboxUtil.CHARSET ).getBytes( CHARSET ) );
+        final byte[] bytes = b64.decode( URLDecoder.decode( sign, PayboxUtil.CHARSET ).getBytes( PayboxUtil.CHARSET ) );
 
         return sig.verify( bytes );
     }

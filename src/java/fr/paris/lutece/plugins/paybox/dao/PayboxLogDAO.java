@@ -36,6 +36,8 @@ package fr.paris.lutece.plugins.paybox.dao;
 import fr.paris.lutece.plugins.paybox.dao.entity.PayboxLogEntity;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
+import java.util.List;
+
 
 /**
  * The Interface PayboxLogDAO.
@@ -49,6 +51,14 @@ public interface PayboxLogDAO
      * @param plugin the plugin
      */
     void addLog( PayboxLogEntity payboxLogEntity, Plugin plugin );
+
+    /**
+     * Gets the all.
+     *
+     * @param plugin the plugin
+     * @return the all
+     */
+    List<PayboxLogEntity> getAll( Plugin plugin );
 
     /**
      * Removes the log.
