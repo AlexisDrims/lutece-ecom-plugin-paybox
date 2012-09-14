@@ -32,6 +32,13 @@
 	    <servlet-class>fr.paris.lutece.plugins.paybox.web.PayboxServlet</servlet-class>
    		<url-pattern>/servlet/plugins/paybox</url-pattern>
 	  </servlet>
-	</servlets>
+	</servlets> 
+	<rbac-resource-types>
+        <rbac-resource-type>
+            <rbac-resource-type-class>
+                 fr.paris.lutece.plugins.paybox.service.role.PayboxReadResourceIdService
+            </rbac-resource-type-class>
+        </rbac-resource-type>
+   </rbac-resource-types>
     
 </plug-in>
