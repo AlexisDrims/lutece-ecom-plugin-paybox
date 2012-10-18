@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.paybox.PayboxUtil;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.plugins.paybox.service.PayboxPlugin;
 import fr.paris.lutece.plugins.paybox.service.PayboxService;
-import fr.paris.lutece.plugins.paybox.util.PayboxErrorConstants;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -94,16 +93,7 @@ public class PayboxServlet extends HttpServlet
             this._payboxLogService.removeLog( request.getParameter( "reference" ),
                 PluginService.getPlugin( PayboxPlugin.PLUGIN_NAME ) );
 
-            final String error = request.getParameter( "error" );
-
-            if ( error.equals( PayboxErrorConstants.CODE_ERROR_OPERATION_REUSSIE ) )
-            {
-                this.delagate( request, response );
-            }
-            else
-            {
-                AppLogService.info( "Transaction terminée avec code d'erreur : " + error );
-            }
+            this.delagate( request, response );
         }
         else
         {
