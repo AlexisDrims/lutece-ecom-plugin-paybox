@@ -2,7 +2,7 @@
     <!-- Plugin Informations -->
     <name>paybox</name>
     <class>fr.paris.lutece.plugins.paybox.service.PayboxPlugin</class>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>paybox.plugin.description</description>
     <provider>paybox.plugin.provider</provider>
     <provider-url>http://lutece.paris.fr</provider-url>
