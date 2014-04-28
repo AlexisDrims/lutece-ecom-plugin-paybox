@@ -67,4 +67,12 @@ public interface PayboxLogService
      * @param plugin the plugin
      */
     void removeLog( String idDossier, Plugin plugin );
+
+    /**
+     * Checks if thos order is pending.
+     *
+     * @param orderReference the numero
+     * @return true, if is pending
+     */
+    boolean isPending( String orderReference, Plugin plugin );
 }

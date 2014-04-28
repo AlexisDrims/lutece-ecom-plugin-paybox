@@ -33,18 +33,17 @@
  */
 package fr.paris.lutece.plugins.paybox.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.paris.lutece.plugins.paybox.dao.PayboxLogDAO;
 import fr.paris.lutece.plugins.paybox.dao.entity.PayboxLogEntity;
 import fr.paris.lutece.plugins.paybox.dto.PayboxLogDTO;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.portal.service.plugin.Plugin;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -53,6 +52,8 @@ import java.util.List;
 @Service
 public class PayboxLogServiceImpl implements PayboxLogService
 {
+
+    /** The _paybox log dao. */
     @Autowired
     private PayboxLogDAO _payboxLogDAO;
 
@@ -78,11 +79,12 @@ public class PayboxLogServiceImpl implements PayboxLogService
         this._payboxLogDAO.removeLog( orderReference, plugin );
     }
 
-    /**
-     * Gets the all.
-     *
-     * @param plugin the plugin
-     * @return the all
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.paybox.service.PayboxLogService#getAll(fr.paris
+     * .lutece.portal.service.plugin.Plugin)
      */
     @Override
     public List<PayboxLogDTO> getAll( final Plugin plugin )
@@ -100,5 +102,18 @@ public class PayboxLogServiceImpl implements PayboxLogService
         }
 
         return ret;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.paybox.service.PayboxLogService#isPending(java
+     * .lang.String, fr.paris.lutece.portal.service.plugin.Plugin)
+     */
+    @Override
+    public boolean isPending( final String orderReference, final Plugin plugin )
+    {
+        return this._payboxLogDAO.countByOrderReference( orderReference, plugin ) > 0;
     }
 }

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>lutece-plugins-pom</artifactId>
 		<groupId>fr.paris.lutece.plugins</groupId>
@@ -29,15 +30,15 @@
 			</releases>
 		</repository>
 	</repositories>
-	
+
 	<dependencies>
 		<dependency>
-            <groupId>fr.paris.lutece</groupId>
-            <artifactId>lutece-core</artifactId>
-            <version>[3.1.6, 5.0.0-SNAPSHOT)</version>
-            <type>lutece-core</type>
-        </dependency>
-        
+			<groupId>fr.paris.lutece</groupId>
+			<artifactId>lutece-core</artifactId>
+			<version>[3.1.6, 5.0.0-SNAPSHOT)</version>
+			<type>lutece-core</type>
+		</dependency>
+
 		<!-- bouncy castle -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -50,16 +51,28 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.1</version>
 		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>library-lutece-unit-testing</artifactId>
+			<version>2.0.7</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>fr.paris.lutece</groupId>
+					<artifactId>lutece-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
-	
+
 	<properties>
 		<componentName>paybox</componentName>
 		<jiraProjectName>PAYBOX</jiraProjectName>
 		<jiraComponentId>10695</jiraComponentId>
 	</properties>
-    <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/technical/plugin-paybox</url>
-    </scm>
+	<scm>
+		<connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</connection>
+		<developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</developerConnection>
+		<url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/technical/plugin-paybox</url>
+	</scm>
 </project>

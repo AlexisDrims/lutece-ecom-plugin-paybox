@@ -39,7 +39,6 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
 
 import java.sql.Timestamp;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +53,10 @@ import java.util.List;
  */
 public class PayboxLogDAOImpl implements PayboxLogDAO
 {
+    
+    /** The Constant SQL_QUERY_COUNT_BY_ORDER_REFERENCE. */
+    private static final String SQL_QUERY_COUNT_BY_ORDER_REFERENCE = "SELECT count(*) FROM paybox_log WHERE order_reference = ?";
+
     /** The Constant SQL_QUERY_DELETE. */
     private static final String SQL_QUERY_DELETE = "DELETE FROM paybox_log WHERE order_reference = ?";
 
@@ -157,5 +160,32 @@ public class PayboxLogDAOImpl implements PayboxLogDAO
         daoUtil.setString( 1, orderReference );
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
+    }
+
+    /* (non-Javadoc)
+     * @see fr.paris.lutece.plugins.paybox.dao.PayboxLogDAO#countByOrderReference(java.lang.String, fr.paris.lutece.portal.service.plugin.Plugin)
+     */
+    @Override
+    public Long countByOrderReference( final String orderReference, final Plugin plugin )
+    {
+        final DAOUtil daoUtil = new DAOUtil( SQL_QUERY_COUNT_BY_ORDER_REFERENCE, plugin );
+        daoUtil.setString( 1, orderReference );
+        daoUtil.executeQuery(  );
+
+        final Long ret;
+
+        if ( !daoUtil.next( ) )
+        {
+            ret = 0L;
+        }
+        else
+        {
+            ret = daoUtil.getLong( 1 );
+        }
+
+        daoUtil.free(  );
+
+
+        return ret;
     }
 }

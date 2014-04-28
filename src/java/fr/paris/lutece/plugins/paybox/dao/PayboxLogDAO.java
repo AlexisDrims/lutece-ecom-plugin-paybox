@@ -67,4 +67,13 @@ public interface PayboxLogDAO
      * @param plugin the plugin
      */
     void removeLog( String orderReference, Plugin plugin );
+
+    /**
+     * Count by order reference.
+     *
+     * @param orderReference the order reference
+     * @param plugin the plugin
+     * @return true, if successful
+     */
+    Long countByOrderReference( String orderReference, Plugin plugin );
 }
