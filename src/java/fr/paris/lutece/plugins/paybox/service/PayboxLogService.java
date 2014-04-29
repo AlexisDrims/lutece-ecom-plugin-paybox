@@ -33,16 +33,17 @@
  */
 package fr.paris.lutece.plugins.paybox.service;
 
+import java.io.Serializable;
+import java.util.List;
+
 import fr.paris.lutece.plugins.paybox.dto.PayboxLogDTO;
 import fr.paris.lutece.portal.service.plugin.Plugin;
-
-import java.util.List;
 
 
 /**
  * The Interface PayboxLogService.
  */
-public interface PayboxLogService
+public interface PayboxLogService extends Serializable
 {
     /**
      * Add a line of log about a new transaction.
@@ -70,8 +71,9 @@ public interface PayboxLogService
 
     /**
      * Checks if thos order is pending.
-     *
+     * 
      * @param orderReference the numero
+     * @param plugin the plugin
      * @return true, if is pending
      */
     boolean isPending( String orderReference, Plugin plugin );

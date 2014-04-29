@@ -53,6 +53,11 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 public class PayboxLogServiceImpl implements PayboxLogService
 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6055360602045570591L;
+
     /** The _paybox log dao. */
     @Autowired
     private PayboxLogDAO _payboxLogDAO;

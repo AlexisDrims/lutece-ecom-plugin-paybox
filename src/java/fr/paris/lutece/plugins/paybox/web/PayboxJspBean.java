@@ -33,6 +33,11 @@
  */
 package fr.paris.lutece.plugins.paybox.web;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import fr.paris.lutece.plugins.paybox.PayboxUtil;
 import fr.paris.lutece.plugins.paybox.item.PayboxUrlItem;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
@@ -43,17 +48,16 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.web.system.PluginJspBean;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 
 /**
  * The Class PayboxApp.
  */
 public class PayboxJspBean extends PluginJspBean
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6935859527498005146L;
     /** The _paybox log service. */
     private final PayboxLogService _payboxLogService = SpringContextService.getBean( "paybox.payboxLogService" );
 

@@ -33,6 +33,12 @@
  */
 package fr.paris.lutece.plugins.paybox.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import fr.paris.lutece.plugins.paybox.dto.PayboxLogDTO;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.plugins.paybox.service.PayboxPlugin;
@@ -42,18 +48,17 @@ import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.web.admin.PluginAdminPageJspBean;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 
 /**
  * The Class PayboxAdminJspBean.
  */
 public class PayboxAdminJspBean extends PluginAdminPageJspBean
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6430112940248220789L;
+
     /** The Constant RIGHT_READ. */
     public static final String RIGHT_READ = "PAYBOX_READ";
 
