@@ -87,8 +87,8 @@ public class PayboxServlet extends HttpServlet
     protected void doPost( final HttpServletRequest request, final HttpServletResponse response )
         throws ServletException, IOException
     {
-        if ( AppPropertiesService.getPropertyBoolean( "paybox.check.sign.callback", true )
-                && PayboxUtil.checkSignature( request.getQueryString( ) ) )
+        if ( !AppPropertiesService.getPropertyBoolean( "paybox.check.sign.callback", true )
+                || PayboxUtil.checkSignature( request.getQueryString( ) ) )
         {
             // ici maj du service de logs
             this._payboxLogService.removeLog( request.getParameter( "reference" ),
