@@ -33,6 +33,14 @@
  */
 package fr.paris.lutece.plugins.paybox.web;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import fr.paris.lutece.plugins.paybox.PayboxUtil;
 import fr.paris.lutece.plugins.paybox.service.PayboxLogService;
 import fr.paris.lutece.plugins.paybox.service.PayboxPlugin;
@@ -40,15 +48,7 @@ import fr.paris.lutece.plugins.paybox.service.PayboxService;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
-
-import java.io.IOException;
-
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 
 /**
@@ -87,7 +87,8 @@ public class PayboxServlet extends HttpServlet
     protected void doPost( final HttpServletRequest request, final HttpServletResponse response )
         throws ServletException, IOException
     {
-        if ( PayboxUtil.checkSignature( request.getQueryString(  ) ) )
+        if ( AppPropertiesService.getPropertyBoolean( "paybox.check.sign.callback", true )
+                && PayboxUtil.checkSignature( request.getQueryString( ) ) )
         {
             // ici maj du service de logs
             this._payboxLogService.removeLog( request.getParameter( "reference" ),
