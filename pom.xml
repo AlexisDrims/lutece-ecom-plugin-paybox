@@ -71,8 +71,8 @@
 		<jiraComponentId>10695</jiraComponentId>
 	</properties>
 	<scm>
-		<connection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/tvvist3/branches/aregie/plugin-paybox</connection>
-		<developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/tvvist3/branches/aregie/plugin-paybox</developerConnection>
+		<connection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</connection>
+		<developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/plugin-paybox</developerConnection>
 		<url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/technical/plugin-paybox</url>
 	</scm>
 </project>
